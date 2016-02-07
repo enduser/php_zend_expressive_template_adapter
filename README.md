@@ -1,6 +1,6 @@
 # Zend Expressive Adapter For The Bazzline Template Engine for PHP
 
-Provides [bazzline's template engine]() integration for [Expressive](https://github.com/zendframework/zend-expressive).
+Provides [bazzline's template engine](https://github.com/bazzline/php_component_template) integration for [Expressive](https://github.com/zendframework/zend-expressive).
 
 
 ## Installation
