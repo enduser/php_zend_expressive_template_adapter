@@ -50,7 +50,6 @@ documentation tree, or browse online at http://zend-expressive.rtfd.org.
     * @todo
         * add [CallableComplexFileBasedTemplateManager](https://github.com/bazzline/php_component_template/blob/master/source/Net/Bazzline/Component/Template/CallableComplexFileBasedTemplateManager.php) support
         * add unit tests
-    * refactored abstract factory
 * [0.1.0](https://github.com/bazzline/php_zend_expressive_template_adapter/tree/0.1.0) - released at 07.02.2016
     * initial plumber release 
 
