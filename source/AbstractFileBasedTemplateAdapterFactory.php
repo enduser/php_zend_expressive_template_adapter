@@ -38,24 +38,9 @@ abstract class AbstractFileBasedTemplateAdapterFactory extends ExpressiveTemplat
     public function __invoke(ContainerInterface $container)
     {
         $adapter        = new ExpressiveTemplateAdapter();
-        $configuration  = $container->has('config')
-            ? $container->get('config')
-            : [];
-
-        $configurationIsNotValid = (
-            (!is_array($configuration))
-            && (!$configuration instanceof ArrayObject)
+        $configuration  = $this->returnValidConfigurationOrThrowInvalidArgumentException(
+            $container
         );
-
-        if ($configurationIsNotValid) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    '"config" service must be an array or ArrayObject for the %s to be able to consume it; received %s',
-                    __CLASS__,
-                    (is_object($configuration) ? get_class($configuration) : gettype($configuration))
-                )
-            );
-        }
 
         $adapter->injectBaseTemplate($this->getAbstractFileBasedTemplate());
 
@@ -94,5 +79,33 @@ abstract class AbstractFileBasedTemplateAdapterFactory extends ExpressiveTemplat
         }
 
         return $adapter;
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @return array|ArrayObject
+     */
+    private function returnValidConfigurationOrThrowInvalidArgumentException(Containerinterface $container)
+    {
+        $configuration  = $container->has('config')
+            ? $container->get('config')
+            : [];
+
+        $configurationIsNotValid = (
+            (!is_array($configuration))
+            && (!$configuration instanceof ArrayObject)
+        );
+
+        if ($configurationIsNotValid) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    '"config" service must be an array or ArrayObject for the %s to be able to consume it; received %s',
+                    __CLASS__,
+                    (is_object($configuration) ? get_class($configuration) : gettype($configuration))
+                )
+            );
+        }
+
+        return $configuration;
     }
 }
